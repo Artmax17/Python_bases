@@ -9,6 +9,16 @@
 класса метод __dict__ и проверить какой будет результат применения этого метода.
 А комментариях к заданию написать тип результата на русском языке.
 '''
+class Worker:
+    def __init__(self, name, surname, position, salary, bonus):
+       self.name = name
+       self.surname = surname
+       self.position = position
+       self._income = {'salary': salary, 'bonus': bonus}
+
+worker1 = Worker("Андрей", "Сергеев", "Менеджер", 40000, 10000)
+print(worker1.__dict__)
+
 
 
 '''
