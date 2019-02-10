@@ -28,6 +28,13 @@ Position (реализовать наследование). Добавить к�
 Реализовать обращение к этому атриубуту, как к свойству.
 Проверить работу всей структуры на реальных данных, вывести результаты.
 '''
+class Worker:
+    def __init__(self, name, surname, position, salary, bonus):
+       self.name = name
+       self.surname = surname
+       self.position = position
+       self._income = {'salary': salary, 'bonus': bonus}
+
 class Position(Worker):
     def __init__(self, name, surname, position, salary, bonus, percent):
         Worker.__init__(self, name, surname, position, salary, bonus)
@@ -47,6 +54,32 @@ print(position1.middle_salary_calc)
 2) вычисления общего дохода работника с учетом надбавки .
 Проверить работу всей структуры на реальных данных, вывести результаты.
 '''
+class Worker:
+    def __init__(self, name, surname, position, salary, bonus):
+       self.name = name
+       self.surname = surname
+       self.position = position
+       self._income = {'salary': salary, 'bonus': bonus}
 
+class Position(Worker):
+    def __init__(self, name, surname, position, salary, bonus, percent):
+        Worker.__init__(self, name, surname, position, salary, bonus)
+        self.percent = percent
+        self.middle_salary = 0
+        self.bonus = bonus
 
+    @property
+    def middle_salary_calc(self):
+        self.middle_salary = (self._income["salary"]*self.percent)/100 + self._income["salary"]
 
+    def get_full_name(self):
+        full_name = self.name + ' ' + self.surname
+        return full_name
+
+    def get_full_salary(self):
+        full_salary = self.middle_salary + self.bonus
+        return full_salary
+
+position1 = Position("Андрей", "Сергеев", "Менеджер", 40000, 1000, 15)
+print(position1.middle_salary_calc)
+print(position1.get_full_salary())
